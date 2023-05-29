@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DASA</title>
+  <link rel="stylesheet" href="css/estilos.css">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="reporte.html">
+  <script src="https://kit.fontawesome.com/41bcea2ae3.js" crossorigin="anonymous"></script>
+</head>
+<body id="body">
+
+  <header>
+    <div class="icon__menu">
+       
+        <i class="fas fa-bars" id="btn_open"></i>
+    </div>
+</header>
+
+<div class="menu__side" id="menu_side">
+
+    <div class="name__page">
+        <i class="fa-thin fa-door-open"></i>
+        <h4>Bienvenido</h4>
+    </div>
+
+    <div class="options__menu">	
+
+        <a href="index.html" >
+            <div class="option">
+                <i class="fas fa-home" title="Inicio"></i>
+                <h4>Panel General</h4>
+            </div>
+        </a>
+
+        <a href="#">
+            <div class="option">
+                <i class="fa-solid fa-user" title="Registro de Estudiantes"></i>
+                <h4>Registro de Estudiantes</h4>
+            </div>
+        </a>
+        
+        <a href="#">
+            <div class="option">
+                <i class="fa-solid fa-file"></i>
+                <h4>Ficha de Matricula</h4>
+            </div>
+        </a>
+
+        <a href="#">
+            <div class="option">
+                <i class="fa-solid fa-folder"></i>
+                <h4>Documentos y Pagos</h4>
+            </div>
+        </a>
+
+        <a href="#" class="selected">
+            <div class="option">
+                <i class="fa-solid fa-file-import"></i>
+                <h4>Reporte</h4>
+            </div>
+        </a>
+
+        <a href="perfil.html">
+            <div class="option">
+                <i class="fa-solid fa-poo-storm"></i>
+                <h4>Encuesta</h4>
+            </div>
+        </a>
+        <a href="#">
+            <div class="option">
+                <i class="fa-solid fa-mask"></i>
+                <h4>Perfil</h4>
+            </div>
+        </a>
+
+    </div>
+
+</div>
+
+
+  <main>
+    <div class="box">
+      <div class="texto">
+        <h2>Reporte de Estudiante</h2>
+      </div>
+    </div>
+  
+  
+    <div class="controls">
+      <p class="titulo">Tipos de Reportes del Estudiante</p>
+      <select name="ReportedeEstudiante" id="DASA-REPORTE" class="control-select">
+        <option selected="selected" value="Elija una Opción">Elija una Opción</option>
+        <option value="Declaración Jurada">Declaración Jurada</option>
+        <option value="Ficha de Matrícula">Ficha de Matrícula</option>
+        <option value="Notas Finales - Periodo" >Notas Finales - Periodo</option>
+        <option value="Notas Finales - Detallado - Periodo" >Notas Finales - Detallado - Periodo</option>
+        <option value="Record Académico - Final" >Record Académico - Final</option>
+        <option value="Record Académico - Periodo">Record Académico - Periodo</option>
+        <option value="Record Académico - Currícula Estudios">Record Académico - Currícula Estudios</option>
+        <option value="Record Académico - Historico">Record Académico - Historico</option>
+        <option value="Plan de Estudios">Plan de Estudios</option>
+        <option value="Estadistica de Asistencia - Clases">Estadistica de Asistencia - Clases</option>
+        <option value="Relación de Asistencia - Clases">Relación de Asistencia - Clases</option>
+      </select>
+    </div>
+    <div>
+      <center>
+        <a href="reporte.html" target="_blank">
+        <input type="submit" name="botones" value="Visualizar" id="DASA-REPORTE" class="click"/>
+        </a>
+      </center>
+    </div>
+  </main>
+  
+  <script src="js/script.js"></script>
+</body>
+</html>

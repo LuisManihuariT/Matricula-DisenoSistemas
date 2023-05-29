@@ -1,0 +1,11 @@
+ <i class="fas fa-bars" id="btn_open"></i>
+ <i class="fa-solid fa-user" title="Registro de Estudiantes"></i>
+
+  <i class="fa-solid fa-file"></i>
+
+  <i class="fa-solid fa-folder"></i>
+  <i class="fa-solid fa-file-import"></i>
+
+  <i class="fa-solid fa-poo-storm"></i>
+
+   <i class="fa-solid fa-mask"></i>

@@ -1,0 +1,236 @@
+
+
+a{
+    text-decoration: none;
+    color:white;
+ 
+}
+
+html{
+    box-sizing:border-box;/*para que el border no afecte al ancho de nuestros elementos*/
+   
+}
+
+
+*,*:before,*:after{
+    box-sizing: inherit; /*heredar del elementos padre o al contrario*/
+}
+
+h1{
+    display: block;
+    text-align: center;
+   
+}
+.contenedor{
+    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height:100vh;
+    font-family: Arial, Helvetica, sans-serif;
+    background: #34495e;
+
+}
+
+.form-body{
+    width:400px;
+    min-width:300px;
+    border-radius: 10px;
+    border:solid 1px #2980b9;
+    margin:10px;
+
+}
+
+
+
+.form-body img{
+    width:150px;
+    display: block;
+    margin: 20px auto;
+}
+
+
+
+.text
+{
+    text-align: center;
+    font-size:1.5rem;
+    font-weight: 600;
+    color: #fff;
+    margin-bottom: 25px;
+
+}
+
+form{
+    display:flex;
+    flex-direction:column;
+    background: transparent;
+    text-align: center;
+    padding:20px 25px;
+    
+}
+
+form label{
+    margin-bottom:20px;  
+}
+
+form label .fa-solid{
+    font-size:20px;
+    margin-right:10px;
+   
+}
+
+
+
+.form-body input{
+  
+   
+    height: 40px;
+    width:85%;
+    padding-left:10px;
+    color:#fff;
+    border:1px solid #fff;
+    border-radius:5px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    background: transparent;
+
+    font-size:1rem;
+    outline: none;
+}
+
+
+
+form .periodo{
+    font-weight: 700;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+.form-body select{
+    
+    color:#fff;
+    border:1px solid #fff;
+    background: transparent;
+    width:75%;
+    height:40px;
+    font-size:1rem;
+    
+
+}
+
+
+.form-body input[type="password"]{
+    margin-top: 20px;
+}
+
+::placeholder{
+    font-size:1rem;
+    color:rgba(255, 255, 255, 596);
+}
+
+.form-body input:hover{
+    transition: .5s;
+    border: 1px solid #2980b9; 
+    color:#2598db;
+}
+/*PALETA DE COLORES #2598db */
+
+button{
+    display: block;
+    margin: auto;
+    margin-top:25px;
+    margin-bottom: 30px;
+    height:40px;
+    width:78%;
+    background: transparent;
+    color:#b9c4c6;
+    border-radius: 2px ;
+    cursor: pointer;
+    outline: none;
+    border:2px solid #2980b9;
+    transition: all .5s ease;
+
+}
+
+button:hover {
+    border:2px solid #3498db;
+    background: linear-gradient(#34495e,#2c3e50);
+}
+
+button a{
+    font-weight: 700;
+}
+button:hover a{
+    color:#d5dbdd;
+}
+
+
+.footer{
+    background: #34495e;
+}
+
+
+.footer-content{
+    
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    background-color: transparent;
+}
+
+.footer span{
+    color:white;
+}
+
+
+/*REPORTE DE ESTUDIANTE*/
+
+
+.texto{
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 10px auto;
+    background-color: #e6edf3;
+    border: 2px;
+    border-color:#E6E6E6;
+    border-style:solid;
+    width: 97%;
+}
+
+.controls{
+    padding:20px;
+    margin: 20px auto;
+    width: 92%;
+    background-color: #e6edf3;
+    border: 2px;
+    border-color:#E6E6E6;
+    border-style:solid;
+    height: 105px;
+}
+
+.titulo{
+    
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 18px;
+}
+
+.click{
+    display: inline-block;
+    width: 100px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: 1000;
+    border: #469BE0;
+    padding: 10px 12px;
+    background-color: #469BE0;
+    color: white;
+    cursor: pointer;
+}
+.click:hover{
+    background-color: transparent;
+    border: 2px solid #469BE0;
+    color: #469BE0;
+}
+
+.control-select{
+    width:100%; 
+    height:40px;
+    font-size: 18px;
+    color: #A8A8A8;
+}

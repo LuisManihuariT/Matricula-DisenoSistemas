@@ -1,0 +1,32 @@
+.text{
+    display: inline-block;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    background-color: #e6edf3;
+    border: 2px;
+    border-color:#E6E6E6;
+    border-style:solid;
+    width: 95%;
+    margin: 1%;
+    font-size: 85%;
+    padding: 0% 1%;
+}
+
+.cajabox{
+    background-color: #e6edf3;
+    border: 2px;
+    border-color:#E6E6E6;
+    border-style:solid;
+    width: 97%;
+    height: 50%;
+    margin: 1%;
+}
+
+.palabra{
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 85%;
+    padding: 0% 1%;
+}
+
+.imag{
+    cursor: pointer;
+}

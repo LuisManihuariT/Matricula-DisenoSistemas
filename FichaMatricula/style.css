@@ -27,6 +27,7 @@ body{
   position: fixed;
   top: 0;
   z-index: 200;
+  border-bottom: 2px solid rgb(230, 230, 230);
 }
 
 #content{
@@ -63,19 +64,23 @@ body{
 }
 
 .cabezera{
-  background: rgb(128, 118, 214);
+  background: #e6edf3;
   height: 80px;
   width: 100%;
   line-height: 80px;
-  color: rgb(247, 0, 0);
-  border-bottom: 2px solid black;
+  color: black;
+  border-radius: 10px;
+  border: 2px solid rgb(230, 230, 230);
+  margin: 1%;
+  
 }
 
 .main{
   background: #e6edf3;
   justify-content: center;
   border-radius: 10px;
-  border: 1px solid rgb(230, 230, 230);
+  border: 2px solid rgb(230, 230, 230);
+  margin: 1%;
   
 }
   .fichamatricula {
@@ -88,6 +93,7 @@ body{
     display: flex;
     height: 50%;
   }
+  
   .forms{
     background-color:#e6edf3;
     position: flex;

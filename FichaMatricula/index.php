@@ -56,21 +56,25 @@
                             <div class="tabla-cursos">
                                 <table>
                                     <?php
-                                      $categoria = array('N°','Código','Semestre','Facultad','Asignatura','Fecha','Turno','Sección'); 
-                                      $fil = 7;
+                                      $categoria = array('N°','Código','Semestre','Facultad','Asignatura','Fecha','Turno','Sección','Opciones'); 
+                                      $fil = 8;
                                       $col = 6;
                                       for ($i = 0; $i <= $fil; $i++) {
                                         echo "<td>", $categoria[$i], "</td>";
                                       }
+
+
                                       for ($j = 1; $j <= $col; $j++) {
                                         echo "<tr>";
-                                        for ($i = 1; $i <= 7; $i++) {
+                                        for ($i = 1; $i <= $fil; $i++) {
                                             if($i==1){
                                                 echo "<td>",$j, "</td>";
                                             }
                                             echo "<td>", "</td>";
                                         }
                                       }
+
+                                      
                                     ?>
                                 </table>
                             </div>
@@ -78,8 +82,8 @@
                         <div class="horario">
                             <table>
                                <?php
-                                   $dias = array('hora','Lunes','Martes','Miercoles','Jueves','Viernes');
-                                   $horas = array(
+                                   $horario = array(
+                                    array('hora','Lunes','Martes','Miercoles','Jueves','Viernes'),
                                     array('7:30 - 8:20','','','','',''),
                                     array('8:20 - 9:10','','','','',''),
                                     array('9:10 - 10:00','','','','',''),
@@ -98,13 +102,10 @@
                                    );
                                    $filas = 13;
                                    $columnas = 5;
-                                   for ($k = 0; $k <= $columnas; $k++) {
-                                       echo "<td>", $dias[$k], "</td>";
-                                   }
                                    for ($l = 0; $l <= $filas; $l++) {
                                         echo "<tr>";
                                         for ($i = 0; $i <= 5; $i++) {
-                                            echo "<td>", $horas[$l][$i], "</td>";
+                                            echo "<td>", $horario[$l][$i], "</td>";
                                         }
                                         echo "</tr>";
                                    }

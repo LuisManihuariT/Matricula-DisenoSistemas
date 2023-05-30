@@ -57,7 +57,7 @@
                 </div>
             </a>
 
-            <a href="perfil.html">
+            <a href="encuesta.html">
                 <div class="option">
                     <i class="fa-solid fa-poo-storm"></i>
                     <h4>Encuesta</h4>

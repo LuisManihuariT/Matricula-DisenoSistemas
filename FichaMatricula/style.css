@@ -1,0 +1,130 @@
+*{
+  margin: 0px;
+  padding: 0px;
+}
+
+body{
+  background: white;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.header{
+  --fa-style-family-brands: "Font Awesome 6 Brands";
+  --fa-font-brands: normal 400 1em/1 "Font Awesome 6 Brands";
+  --fa-font-regular: normal 400 1em/1 "Font Awesome 6 Free";
+  --fa-style-family-classic: "Font Awesome 6 Free";
+  --fa-font-solid: normal 900 1em/1 "Font Awesome 6 Free";
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  text-decoration: none;
+  font-family: 'Open Sans', sans-serif;
+  width: 100%;
+  height: 10%;
+  background: #f5f5f5;
+  display: flex;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  z-index: 200;
+}
+
+#content{
+  /*float: right;
+  width: 100%;
+  min-height: 500px;
+  background: green;*/
+  --fa-style-family-brands: "Font Awesome 6 Brands";
+  --fa-font-brands: normal 400 1em/1 "Font Awesome 6 Brands";
+  --fa-font-regular: normal 400 1em/1 "Font Awesome 6 Free";
+  --fa-style-family-classic: "Font Awesome 6 Free";
+  --fa-font-solid: normal 900 1em/1 "Font Awesome 6 Free";
+  margin: 0;
+  box-sizing: border-box;
+  text-decoration: none;
+  font-family: 'Open Sans', sans-serif;
+  padding: 20px;
+}
+
+.grid {
+  display: flex;
+}
+
+.aside{
+  float: right;
+  width: 342px;
+  background: #1783db;
+}
+
+.container{
+  display: absolute;
+  width: 100%;
+  margin: 0px auto;
+}
+
+.cabezera{
+  background: rgb(128, 118, 214);
+  height: 80px;
+  width: 100%;
+  line-height: 80px;
+  color: rgb(247, 0, 0);
+  border-bottom: 2px solid black;
+}
+
+.main{
+  background: #e6edf3;
+  justify-content: center;
+  border-radius: 10px;
+  border: 1px solid rgb(230, 230, 230);
+  
+}
+  .fichamatricula {
+    background-color: black;
+    height: 100vh;
+    width: 100%;
+  }
+  
+  .arriba{
+    display: flex;
+    height: 50%;
+  }
+  .forms{
+    background-color:#e6edf3;
+    position: flex;
+    width: 35%;
+    padding: 20px;
+    border-collapse: center;
+    border-radius: 10px;
+  }
+
+  .tabla-cursos{
+    background-color: #e6edf3;
+    position: flex;
+    border-collapse: center;
+    width: 65%;
+    padding: 20px;
+    border-radius: 10px;
+  }
+  .horario{
+      background: #e6edf3;
+      position: relative;
+      border-collapse: center;
+      height: 50%;
+      padding: 30px;
+      border-radius: 10px;
+  }
+  
+  table,th,td {
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 85%;
+    margin-inline-start: auto;
+    margin-inline-end: auto;
+    width: 95%;
+    border: 1px solid black;
+    border-collapse: collapse;
+
+  }
+
+  th, td{
+    padding: 3px;
+  }

@@ -497,3 +497,15 @@ label, input, select {
     border:1px solid #14a5ee;
 
 }
+
+/*Perfil */
+.grid-perfil_contenedor {
+    display: grid;
+    grid-template-columns: auto auto;
+    grid-gap: 10px;
+  }
+
+  .grid-perfil_item {
+    border: 1px solid #ddd;
+    padding: 10px;
+  }

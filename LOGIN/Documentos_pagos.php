@@ -1,63 +1,79 @@
+?>
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Formulario de Registro de Pagos y Documentos</title>
-    <style>
-        .add-btn {
-            margin-top: 20px;
-        }
-
-        .overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.5);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .form-container {
-            background-color: #fff;
-            padding: 20px;
-            border-radius: 5px;
-        }
-
-        .form-container h3 {
-            margin-top: 0;
-        }
-
-        .form-container label {
-            display: block;
-            margin-top: 10px;
-        }
-
-        .form-container select,
-        .form-container input[type="date"],
-        .form-container input[type="number"] {
-            width: 100%;
-            padding: 5px;
-        }
-
-        .form-container button {
-            margin-top: 10px;
-        }
-
-        table {
-            border-collapse: collapse;
-            width: 100%;
-            margin-top: 20px;
-        }
-
-        th, td {
-            border: 1px solid black;
-            padding: 5px;
-        }
-    </style>
+    <title>Registro de Estudiante</title>
+    <link rel="stylesheet" href="css/estilos.css">
+    <script src="https://kit.fontawesome.com/41bcea2ae3.js" crossorigin="anonymous"></script>
 </head>
-<body>
+<body id="body">
+<header>
+    <div class="icon__menu">
+        <i class="fas fa-bars" id="btn_open"></i>
+    </div>
+</header>
+
+<div class="menu__side" id="menu_side">
+
+    <div class="name__page">
+        <i class="fa-thin fa-door-open"></i>
+        <h4>Bienvenido</h4>
+    </div>
+
+    <div class="options__menu">	
+
+        <a href="index.html">
+            <div class="option">
+                <i class="fas fa-home" title="Inicio"></i>
+                <h4>Panel General</h4>
+            </div>
+        </a>
+
+        <a href="registro_estudiante.php">
+            <div class="option">
+                <i class="fa-solid fa-user" title="Registro de Estudiantes"></i>
+                <h4>Registro de Estudiantes</h4>
+            </div>
+        </a>
+        
+        <a href="ficha_matricula.php">
+            <div class="option">
+                <i class="fa-solid fa-file"></i>
+                <h4>Ficha de Matricula</h4>
+            </div>
+        </a>
+
+        <a href="Documentos_pagos.php" class="selected">
+            <div class="option">
+                <i class="fa-solid fa-folder"></i>
+                <h4>Documentos y Pagos</h4>
+            </div>
+        </a>
+
+        <a href="proyecto.html">
+            <div class="option">
+                <i class="fa-solid fa-file-import"></i>
+                <h4>Reporte</h4>
+            </div>
+        </a>
+
+        <a href="encuesta.html">
+            <div class="option">
+                <i class="fa-solid fa-poo-storm"></i>
+                <h4>Encuesta</h4>
+            </div>
+        </a>
+        <a href="perfil.php">
+            <div class="option">
+                <i class="fa-solid fa-mask"></i>
+                <h4>Perfil</h4>
+            </div>
+        </a>
+
+    </div>
+
+</div>
+<main>
     <h1>LISTADO DE PAGOS REGISTRADOS</h1>
 
     <table>
@@ -68,47 +84,43 @@
             <th>NÚMERO</th>
             <th>CÓDIGO-DESCRIPCIÓN</th>
             <th>IMPORTE</th>
-            <th>ARCHIVO</th>
             <th>ESTADO</th>
-            <th>OPCIÓN</th>
+            <th>OPCIONES</th>
         </tr>
         <?php
+        require_once 'conexion.php';
         // Obtener los registros de pagos desde la base de datos (ejemplo)
         $registrosPagos = obtenerRegistrosPagos();
 
-        foreach ($registrosPagos as $numero => $registro) {
-            echo "<tr>";
-            echo "<td>" . ($numero + 1) . "</td>"; // Número de orden de registro
-            echo "<td>" . $registro['banco'] . "</td>"; // Banco seleccionado
-            echo "<td>" . $registro['fecha_pago'] . "</td>"; // Fecha del pago
-            echo "<td>" . $registro['numero_operacion'] . "</td>"; // Número de Operacion
-            echo "<td>" . $registro['concepto_pago'] . "</td>"; // Concepto de pago
-            echo "<td>" . $registro['importe'] . "</td>"; // Importe
-            echo "<td>Pendiente</td>"; // Estado (Por definición: Pendiente)
-
-            // Columna de Opción (dividida en 5 pequeñas columnas con botones como imágenes)
-            echo "<td>";
-            echo "<img src='editar.png' alt='Editar' onclick='editarRegistro()' style='width: 20px;'>";
-            echo "<img src='eliminar.png' alt='Eliminar' onclick='eliminarRegistro()' style='width: 20px;'>";
-            echo "<img src='subir.png' alt='Subir archivo' onclick='subirArchivo()' style='width: 20px;'>";
-            echo "<img src='observacion.png' alt='Observación' onclick='agregarObservacion()' style='width: 20px;'>";
-            echo "<img src='ver.png' alt='Ver imagen' onclick='verImagen()' style='width: 20px;'>";
-            echo "</td>";
-            echo "</tr>";
+        if ($registrosPagos) {
+            foreach ($registrosPagos as $numero => $registro) {
+                echo "<tr>";
+                echo "<td>" . ($numero + 1) . "</td>"; // Número de orden de registro
+                echo "<td>" . (isset($registro['banco']) ? $registro['banco'] : '') . "</td>"; // Banco seleccionado
+                echo "<td>" . (isset($registro['fecha_pago']) ? $registro['fecha_pago'] : '') . "</td>"; // Fecha del pago
+                echo "<td>" . (isset($registro['numero_operacion']) ? $registro['numero_operacion'] : '') . "</td>"; // Número de Operacion
+                echo "<td>" . (isset($registro['concepto_pago']) ? $registro['concepto_pago'] : '') . "</td>"; // Concepto de pago
+                echo "<td>" . (isset($registro['importe']) ? $registro['importe'] : '') . "</td>"; // Importe
+                echo "<td>Pendiente</td>"; // Estado (Por definición: Pendiente)
+    
+                // Columna de Opción (dividida en 5 pequeñas columnas con botones como imágenes)
+                echo "<td>";
+                echo "<img src='./img/lapiz (2).png' alt='Editar' onclick='editarRegistro()' style='width: 20px;'>";
+                echo "<img src='./img/eliminar.png' alt='Eliminar' onclick='eliminarRegistro()' style='width: 20px;'>";
+                echo "<img src='./img/subir.png' alt='Subir archivo' onclick='subirArchivo()' style='width: 20px;'>";
+                echo "<img src='./img/ver.png' alt='Observación' onclick='agregarObservacion()' style='width: 20px;'>";
+                echo "<img src='./img/imagen.png' alt='Ver imagen' onclick='verImagen()' style='width: 20px;'>";
+                echo "</td>";
+                echo "</tr>";
+            }
         }
-
-        // Obtener los totales
         $totalRegistrosPagos = count($registrosPagos);
         $totalPendientesPagos = calcularTotalPendientes($registrosPagos);
         ?>
-
-
-<tr>
-            <td colspan="8">Cantidad de registros: <?php echo $totalRegistrosPagos; ?></td>
-        </tr>
         <tr>
-            <td colspan="8">Total Pendientes: <?php echo $totalPendientesPagos; ?></td>
-        </tr>
+        <td colspan="5">Cantidad de registros: <?php echo $totalRegistrosPagos; ?></td>
+        <td colspan="4">Total Pendientes: <?php echo $totalPendientesPagos; ?></td>
+    </tr>
     </table>
 
     <button class="add-btn" onclick="showAddPaymentForm()">Agregar registro</button>
@@ -116,7 +128,7 @@
     <div id="addPaymentFormOverlay" class="overlay" style="display: none;">
         <div class="form-container">
             <h2>Agregar Registro de Pago</h2>
-            <form>
+            <form method="post" action="registrar_pago.php">
                 <h3>Banco</h3>
                 <label for="banco">Seleccione un banco:</label>
                 <select id="banco" name="banco">
@@ -139,7 +151,7 @@
 
                 <h3>Fecha de Pago</h3>
                 <label for="fecha_pago">Seleccione la fecha de pago:</label>
-                <input type="date" id="fecha_pago" name="fecha_pago">
+                <input type="date" id="fecha_pago" name="fecha_pago" required>
 
                 <h3>Concepto de Pago</h3>
                 <label for="concepto_pago">Seleccione el concepto de pago:</label>
@@ -168,11 +180,11 @@
 
                 <h3>N° de Operación</h3>
                 <label for="numero_operacion">Ingrese el número de operación:</label>
-                <input type="number" id="numero_operacion" name="numero_operacion">
+                <input type="number" id="numero_operacion" name="numero_operacion" required>
 
                 <h3>Importe</h3>
                 <label for="importe">Ingrese el importe:</label>
-                <input type="number" step="0.01" id="importe" name="importe">
+                <input type="number" step="0.01" id="importe" name="importe" required>
 
                 <button type="submit">Registrar</button>
                 <button type="button" onclick="hideAddPaymentForm()">Cancelar</button>
@@ -188,30 +200,29 @@
             <th>TIPO</th>
             <th>ARCHIVO</th>
             <th>ESTADO</th>
-            <th>OPCIÓN</th>
         </tr>
         <?php
         // Obtener los registros de documentos desde la base de datos (ejemplo)
         $registrosDocumentos = obtenerRegistrosDocumentos();
 
-        foreach ($registrosDocumentos as $registro) {
-            echo "<tr>";
-            echo "<td>" . $registro['tipo'] . "</td>";
-            echo "<td>" . $registro['archivo'] . "</td>";
-            echo "<td>" . $registro['estado'] . "</td>";
-            echo "<td>" . $registro['opcion'] . "</td>";
-            echo "</tr>";
+        if ($registrosDocumentos) {
+            foreach ($registrosDocumentos as $numero => $registro) {
+                echo "<tr>";
+                echo "<td>" . ($numero + 1) . "</td>";
+                echo "<td>" . (isset($registro['tipo']) ? $registro['tipo'] : '') . "</td>";
+                echo "<td>" . (isset($registro['archivo']) ? $registro['archivo'] : '') . "</td>";
+                echo "<td>" . (isset($registro['estado']) ? $registro['estado'] : '') . "</td>";
+                echo "</tr>";
+            }
         }
-
-        // Obtener los totales
         $totalRegistrosDocumentos = count($registrosDocumentos);
         $totalPendientesDocumentos = calcularTotalPendientes($registrosDocumentos);
         ?>
-
-<tr>
-        <td colspan="4">Cantidad de registros: <?php echo $totalRegistrosDocumentos; ?></td>
-        <td colspan="1">Cantidad Pendientes: <?php echo $totalPendientesDocumentos; ?></td>
-        </tr>
+        
+        <tr>
+    <td colspan="4">Cantidad de registros: <?php echo $totalRegistrosDocumentos; ?></td>
+    <td colspan="1">Cantidad Pendientes: <?php echo $totalPendientesDocumentos; ?></td>
+    </tr>
     </table>
 
     <button class="add-btn" onclick="showAddDocumentForm()">Agregar documento</button>
@@ -219,7 +230,7 @@
     <div id="addDocumentFormOverlay" class="overlay" style="display: none;">
         <div class="form-container">
             <h2>Agregar Documento</h2>
-            <form>
+            <form method="post" action="registrar_documento.php">
                 <h3>Documento</h3>
                 <label for="tipo_documento">Seleccione un tipo de documento:</label>
                 <select id="tipo_documento" name="tipo_documento">
@@ -267,92 +278,6 @@
                 hideAddDocumentForm();
             }
         });
-
-        function editarRegistro(numero) {
-            // Lógica para editar el registro seleccionado
-            console.log("Editar registro número: " + (numero + 1));
-        }
-
-        function eliminarRegistro(numero) {
-            // Lógica para eliminar el registro seleccionado
-            console.log("Eliminar registro número: " + (numero + 1));
-        }
-
-        function subirArchivo(numero) {
-            // Lógica para subir un archivo relacionado al registro seleccionado
-            console.log("Subir archivo para el registro número: " + (numero + 1));
-        }
-
-        function agregarObservacion(numero) {
-            // Lógica para agregar una observación al registro seleccionado
-            console.log("Agregar observación para el registro número: " + (numero + 1));
-        }
-
-        function verImagen(numero) {
-            // Lógica para ver la imagen asociada al registro seleccionado
-            console.log("Ver imagen para el registro número: " + (numero + 1));
-        }
-
-
-        // Funciones de ejemplo para obtener los registros y realizar cálculos
-
-        function obtenerRegistrosPagos() {
-            // Aquí puedes realizar la lógica para obtener los registros de pagos de la base de datos
-            // Retorna un arreglo con los registros
-            return [
-                {
-                    'banco': 'BN - Codigo',
-                    'fecha_pago': '2023-05-30',
-                    'numero_operacion': '001',
-                    'concepto_pago': '038 - MATRICULA ALUMNOS INGRESANTES',
-                    'importe': '100.00',
-                    'archivo': 'archivo1.pdf',
-                    'estado': 'Pendiente',
-                    'opcion': 'Opción 1'
-                },
-                {
-                    'banco': 'BN - Agente',
-                    'fecha_pago': '2023-05-31',
-                    'numero_operacion': '002',
-                    'concepto_pago': '040 - Cuota Mensual',
-                    'importe': '200.00',
-                    'archivo': 'archivo2.pdf',
-                    'estado': 'Pagado',
-                    'opcion': 'Opción 2'
-                }
-                // Agrega más registros si es necesario
-            ];
-        }
-
-        function obtenerRegistrosDocumentos() {
-            // Aquí puedes realizar la lógica para obtener los registros de documentos de la base de datos
-            // Retorna un arreglo con los registros
-            return [
-                {
-                    'tipo': 'Documento 1',
-                    'archivo': 'documento1.pdf',
-                    'estado': 'Pendiente',
-                    'opcion': 'Opción 1'
-                },
-                {
-                    'tipo': 'Documento 2',
-                    'archivo': 'documento2.pdf',
-                    'estado': 'En revisión',
-                    'opcion': 'Opción 2'
-                }
-                // Agrega más registros si es necesario
-            ];
-        }
-
-        function calcularTotalPendientes(registros) {
-            var pendientes = 0;
-            for (var i = 0; i < registros.length; i++) {
-                if (registros[i]['estado'] === 'Pendiente') {
-                    pendientes++;
-                }
-            }
-            return pendientes;
-        }
     </script>
 
     <?php
@@ -369,9 +294,7 @@
                 'numero' => '001',
                 'codigo_descripcion' => '038 - MATRICULA ALUMNOS INGRESANTES',
                 'importe' => '100.00',
-                'archivo' => 'archivo1.pdf',
-                'estado' => 'Pendiente',
-                'opcion' => 'Opción 1'
+                'estado'=> 'pendiente',
             ),
             array(
                 'tipo' => 'Pago 2',
@@ -379,9 +302,7 @@
                 'numero' => '002',
                 'codigo_descripcion' => '040 - Cuota Mensual',
                 'importe' => '200.00',
-                'archivo' => 'archivo2.pdf',
-                'estado' => 'Pagado',
-                'opcion' => 'Opción 2'
+                'estado'=> 'pendiente',
             )
             // Agrega más registros si es necesario
         );
@@ -396,29 +317,28 @@
                 'tipo' => 'Documento 1',
                 'archivo' => 'documento1.pdf',
                 'estado' => 'Pendiente',
-                'opcion' => 'Opción 1'
             ),
             array(
                 'tipo' => 'Documento 2',
                 'archivo' => 'documento2.pdf',
                 'estado' => 'En revisión',
-                'opcion' => 'Opción 2'
             )
             // Agrega más registros si es necesario
         );
     }
-
     function calcularTotalPendientes($registros)
-    {
-        $pendientes = 0;
-        foreach ($registros as $registro) {
-            if ($registro['estado'] === 'Pendiente') {
-                $pendientes++;
-            }
+{
+    $pendientes = 2;
+    foreach ($registros as $registro) {
+        if ($registro['estado'] === 'Pendiente') {
+            $pendientes++;
         }
-        return $pendientes;
     }
+    return $pendientes;
+}
+
     ?>
-    
+</main>
+<script src="js/script.js"></script>
 </body>
-</html> 
+</html>

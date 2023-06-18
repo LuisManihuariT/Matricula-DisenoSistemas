@@ -23,7 +23,7 @@
 
         <div class="options__menu">	
 
-            <a href="index.html" class="selected">
+            <a href="index.html" >
                 <div class="option">
                     <i class="fas fa-home" title="Inicio"></i>
                     <h4>Panel General</h4>
@@ -64,7 +64,7 @@
                     <h4>Encuesta</h4>
                 </div>
             </a>
-            <a href="perfil.php">
+            <a href="perfil.php" class="selected">
                 <div class="option">
                     <i class="fa-solid fa-mask"></i>
                     <h4>Perfil</h4>
@@ -314,7 +314,7 @@
 
             if ($result->num_rows > 0) {while ($row = $result->fetch_assoc()) {
                 echo "<div>";
-                echo "<p><strong>Número: </strong>" . $row['numero'] . "</p>";
+                echo "<p><strong>Número: </strong>" . $row['celular1'] . "</p>";
                 echo "</div>";
             }
             } 

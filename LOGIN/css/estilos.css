@@ -505,7 +505,135 @@ label, input, select {
     grid-gap: 10px;
   }
 
-  .grid-perfil_item {
-    border: 1px solid #ddd;
-    padding: 10px;
+ 
+  
+
+  #content_ficha_matricula{
+    /*float: right;
+    width: 100%;
+    min-height: 500px;
+    background: green;*/
+    --fa-style-family-brands: "Font Awesome 6 Brands";
+    --fa-font-brands: normal 400 1em/1 "Font Awesome 6 Brands";
+    --fa-font-regular: normal 400 1em/1 "Font Awesome 6 Free";
+    --fa-style-family-classic: "Font Awesome 6 Free";
+    --fa-font-solid: normal 900 1em/1 "Font Awesome 6 Free";
+    margin: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    font-family: 'Open Sans', sans-serif;
+    padding: 20px;
   }
+  
+  .grid_ficha_matricula {
+    display: flex;
+  }
+  
+  .container_ficha_matricula{
+    display: absolute;
+    width: 100%;
+    margin: 0px auto;
+  }
+  
+  .cabezera{
+    background: #e6edf3;
+    height: 80px;
+    width: 100%;
+    line-height: 80px;
+    color: black;
+    border-radius: 10px;
+    border: 2px solid rgb(230, 230, 230);
+    margin: 1%;
+    
+  }
+  
+  .main_ficha_matricula{
+    background: #e6edf3;
+    justify-content: center;
+    border-radius: 10px;
+    border: 2px solid rgb(230, 230, 230);
+    margin: 1%;
+    
+  }
+    .fichamatricula {
+      background-color: black;
+      height: 100vh;
+      width: 100%;
+    }
+    
+    .arriba{
+      display: flex;
+      height: 50%;
+    }
+    
+    .forms_ficha_matricula{
+      background-color:#e6edf3;
+      position: flex;
+      width: 35%;
+      padding: 20px;
+      border-collapse: center;
+      border-radius: 10px;
+    }
+  
+    .tabla-cursos{
+      background-color: #e6edf3;
+      position: flex;
+      border-collapse: center;
+      width: 65%;
+      padding: 20px;
+      border-radius: 10px;
+    }
+    .horario_ficha_matricula{
+        background: #e6edf3;
+        position: relative;
+        border-collapse: center;
+        height: 50%;
+        padding: 30px;
+        border-radius: 10px;
+    }
+    
+
+
+/*DOCUMENTOS Y PAGOS*/
+.add-btn {
+    margin-top: 20px;
+}
+
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.form-container {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+}
+
+.form-container h3 {
+    margin-top: 0;
+}
+
+.form-container label {
+    display: block;
+    margin-top: 10px;
+}
+
+.form-container select,
+.form-container input[type="date"],
+.form-container input[type="number"] {
+    width: 100%;
+    padding: 5px;
+}
+
+.form-container button {
+    margin-top: 10px;
+}
+

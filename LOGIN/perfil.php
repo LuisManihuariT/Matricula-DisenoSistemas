@@ -224,7 +224,7 @@
 
             if ($result->num_rows > 0) {while ($row = $result->fetch_assoc()) {
                 echo "<div>";
-                echo "<p><strong>Contraseña: </strong>" . $row['num_doc_registro'] . "</p>";
+                echo "<p><strong>Contraseña: </strong>" . $row['contraseña'] . "</p>";
                 echo "</div>";
             }
             } 

@@ -165,6 +165,11 @@
 
                 <div class="row">
                     <label for="departamento_nacimiento">Departamento de nacimiento:</label>
+                    <label for="provincia_nacimiento">Provincia de nacimiento:</label>
+                    <label for="distrito_nacimiento">Distrito de nacimiento:</label>
+                </div>
+
+                <div class="row">
                     <select id="departamento_nacimiento" name="departamento_nacimiento">
                         <option value="amazonas">Amazonas</option>
                         <option value="ancash">Áncash</option>
@@ -192,12 +197,6 @@
                         <option value="tumbes">Tumbes</option>
                         <option value="ucayali">Ucayali</option>
                     </select>
-                    <label for="provincia_nacimiento">Provincia de nacimiento:</label>
-                    <label for="distrito_nacimiento">Distrito de nacimiento:</label>
-                </div>
-
-                <div class="row">
-                    <input type="text" name="departamento_nacimiento" id="departamento_nacimiento" required>
                     <input type="text" name="provincia_nacimiento" id="provincia_nacimiento" required>
                     <input type="text" name="distrito_nacimiento" id="distrito_nacimiento" required>
                 </div>

@@ -1,29 +1,22 @@
 <?php
 session_start();
 
-// Verificar si se ha enviado una solicitud de cierre de sesión
 if (isset($_GET['logout'])) {
-    // Eliminar todas las variables de sesión
     session_unset();
 
-    // Destruir la sesión
     session_destroy();
 
-    // Redireccionar al formulario de inicio de sesión
     header("Location: login.php");
     exit();
 }
 
-// Verificar si no se ha iniciado sesión
 if (!isset($_SESSION['codigo_estudiante'])) {
-    // Si no se ha iniciado sesión, redireccionar al formulario de inicio de sesión
     header("Location: login.php");
     exit();
 }
 
 $codigo = $_SESSION['codigo_estudiante'];
 
-// Resto del código para mostrar los datos del perfil
 $servername = "localhost";
 $username = "root";
 $password = "";

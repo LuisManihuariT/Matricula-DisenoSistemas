@@ -1,3 +1,59 @@
+<?php
+session_start();
+
+// Verificar si se ha enviado una solicitud de cierre de sesión
+if (isset($_GET['logout'])) {
+    // Eliminar todas las variables de sesión
+    session_unset();
+
+    // Destruir la sesión
+    session_destroy();
+
+    // Redireccionar al formulario de inicio de sesión
+    header("Location: login.php");
+    exit();
+}
+
+// Verificar si no se ha iniciado sesión
+if (!isset($_SESSION['codigo_estudiante'])) {
+    // Si no se ha iniciado sesión, redireccionar al formulario de inicio de sesión
+    header("Location: login.php");
+    exit();
+}
+
+$codigo = $_SESSION['codigo_estudiante'];
+
+// Resto del código para mostrar los datos del perfil
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "bdestudiante_registro";
+
+$conn = new mysqli($servername, $username, $password, $dbname);
+
+if ($conn->connect_error) {
+    die("Error en la conexión: " . $conn->connect_error);
+}
+
+$sql = "SELECT * FROM registro_estudiante WHERE codigo = '$codigo' ORDER BY codigo";
+$result = $conn->query($sql);
+
+if ($result->num_rows > 0) {
+    while ($row = $result->fetch_assoc()) {
+        $apellido_paterno = $row['apellido_paterno'];
+        $apellido_materno = $row['apellido_materno'];
+        $nombres = $row['nombres'];
+        $contraseña = $row['contraseña'];
+        $num_doc_registro = $row['num_doc_registro'];
+        $email_institucional = $row['email_institucional'];
+        $celular1 = $row['celular1'];
+    }
+} else {
+    echo "<p>No se encontraron registros para el código especificado.</p>";
+}
+$conn->close();
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -82,247 +138,31 @@
 <h1>Detalles de mi perfil</h1>
 <div class="grid-perfil_contenedor">
     <div class="grid-perfil_item">
-        <?php
-            $servername = "localhost";
-            $username = "root";
-            $password = "";
-            $dbname = "bdestudiante_registro";
-            
-            $conn = new mysqli($servername, $username, $password, $dbname);
-
-            if ($conn->connect_error) {
-                die("Error en la conexión: " . $conn->connect_error);
-            }
-
-            $codigo = "2021-119082";
-
-            $sql = "SELECT * FROM registro_estudiante WHERE codigo = '$codigo' ORDER BY codigo";
-            $result = $conn->query($sql);
-
-            if ($result->num_rows > 0) {while ($row = $result->fetch_assoc()) {
-                echo "<div>";
-                echo "<p><strong>Apellido Paterno:</strong> " . $row['apellido_paterno'] . "</p>";
-                echo "</div>";
-            }
-            } 
-            else {
-                echo "<p>No se encontraron registros para el código especificado.</p>";
-            }
-            $conn->close();
-        ?>
+        <p><strong>Código de estudiante: </strong><?php echo $codigo; ?></p>
     </div>
     <div class="grid-perfil_item">
-        <?php
-            $servername = "localhost";
-            $username = "root";
-            $password = "";
-            $dbname = "bdestudiante_registro";
-            
-            $conn = new mysqli($servername, $username, $password, $dbname);
-
-            if ($conn->connect_error) {
-                die("Error en la conexión: " . $conn->connect_error);
-            }
-
-            $codigo = "2021-119082";
-
-            $sql = "SELECT * FROM registro_estudiante WHERE codigo = '$codigo' ORDER BY codigo";
-            $result = $conn->query($sql);
-
-            if ($result->num_rows > 0) {while ($row = $result->fetch_assoc()) {
-                echo "<div>";
-                echo "<p><strong>Apellido Materno:</strong> " . $row['apellido_materno'] . "</p>";
-                echo "</div>";
-            }
-            } 
-            else {
-                echo "<p>No se encontraron registros para el código especificado.</p>";
-            }
-            $conn->close();
-        ?>
+        <p><strong>Apellido Paterno: </strong><?php echo $apellido_paterno; ?></p>
     </div>
     <div class="grid-perfil_item">
-        <?php
-            $servername = "localhost";
-            $username = "root";
-            $password = "";
-            $dbname = "bdestudiante_registro";
-            
-            $conn = new mysqli($servername, $username, $password, $dbname);
-
-            if ($conn->connect_error) {
-                die("Error en la conexión: " . $conn->connect_error);
-            }
-
-            $codigo = "2021-119082";
-
-            $sql = "SELECT * FROM registro_estudiante WHERE codigo = '$codigo' ORDER BY codigo";
-            $result = $conn->query($sql);
-
-            if ($result->num_rows > 0) {while ($row = $result->fetch_assoc()) {
-                echo "<div>";
-                echo "<p><strong>Nombres:</strong> " . $row['nombres'] . "</p>";
-                echo "</div>";
-            }
-            } 
-            else {
-                echo "<p>No se encontraron registros para el código especificado.</p>";
-            }
-            $conn->close();
-        ?>
+        <p><strong>Apellido Materno: </strong><?php echo $apellido_materno; ?></p>
     </div>
     <br>
     <h1>Seguridad de contraseñas</h1>
     <br>
     <div class="grid-perfil_item">
-        <?php
-            $servername = "localhost";
-            $username = "root";
-            $password = "";
-            $dbname = "bdestudiante_registro";
-            
-            $conn = new mysqli($servername, $username, $password, $dbname);
-
-            if ($conn->connect_error) {
-                die("Error en la conexión: " . $conn->connect_error);
-            }
-
-            $codigo = "2021-119082";
-
-            $sql = "SELECT * FROM registro_estudiante WHERE codigo = '$codigo' ORDER BY codigo";
-            $result = $conn->query($sql);
-
-            if ($result->num_rows > 0) {while ($row = $result->fetch_assoc()) {
-                echo "<div>";
-                echo "<p><strong>Usuario: </strong>" . $row['codigo'] . "</p>";
-                echo "</div>";
-            }
-            } 
-            else {
-                echo "<p>No se encontraron registros para el código especificado.</p>";
-            }
-            $conn->close();
-        ?>
+        <p><strong>Nombres: </strong><?php echo $nombres; ?></p>
     </div>
     <div class="grid-perfil_item">
-        <?php
-            $servername = "localhost";
-            $username = "root";
-            $password = "";
-            $dbname = "bdestudiante_registro";
-            
-            $conn = new mysqli($servername, $username, $password, $dbname);
-
-            if ($conn->connect_error) {
-                die("Error en la conexión: " . $conn->connect_error);
-            }
-
-            $codigo = "2021-119082";
-
-            $sql = "SELECT * FROM registro_estudiante WHERE codigo = '$codigo' ORDER BY codigo";
-            $result = $conn->query($sql);
-
-            if ($result->num_rows > 0) {while ($row = $result->fetch_assoc()) {
-                echo "<div>";
-                echo "<p><strong>Contraseña: </strong>" . $row['contraseña'] . "</p>";
-                echo "</div>";
-            }
-            } 
-            else {
-                echo "<p>No se encontraron registros para el código especificado.</p>";
-            }
-            $conn->close();
-        ?>
+        <p><strong>Contraseña: </strong><?php echo $contraseña; ?></p>
     </div>
     <div class="grid-perfil_item">
-        <?php
-            $servername = "localhost";
-            $username = "root";
-            $password = "";
-            $dbname = "bdestudiante_registro";
-            
-            $conn = new mysqli($servername, $username, $password, $dbname);
-
-            if ($conn->connect_error) {
-                die("Error en la conexión: " . $conn->connect_error);
-            }
-
-            $codigo = "2021-119082";
-
-            $sql = "SELECT * FROM registro_estudiante WHERE codigo = '$codigo' ORDER BY codigo";
-            $result = $conn->query($sql);
-
-            if ($result->num_rows > 0) {while ($row = $result->fetch_assoc()) {
-                echo "<div>";
-                echo "<p><strong>Confirme: </strong>" . $row['num_doc_registro'] . "</p>";
-                echo "</div>";
-            }
-            } 
-            else {
-                echo "<p>No se encontraron registros para el código especificado.</p>";
-            }
-            $conn->close();
-        ?>
+        <p><strong>Número de documento de registro: </strong><?php echo $num_doc_registro; ?></p>
     </div>
     <div class="grid-perfil_item">
-        <?php
-            $servername = "localhost";
-            $username = "root";
-            $password = "";
-            $dbname = "bdestudiante_registro";
-            
-            $conn = new mysqli($servername, $username, $password, $dbname);
-
-            if ($conn->connect_error) {
-                die("Error en la conexión: " . $conn->connect_error);
-            }
-
-            $codigo = "2021-119082";
-
-            $sql = "SELECT * FROM registro_estudiante WHERE codigo = '$codigo' ORDER BY codigo";
-            $result = $conn->query($sql);
-
-            if ($result->num_rows > 0) {while ($row = $result->fetch_assoc()) {
-                echo "<div>";
-                echo "<p><strong>Email: </strong>" . $row['email_institucional'] . "</p>";
-                echo "</div>";
-            }
-            } 
-            else {
-                echo "<p>No se encontraron registros para el código especificado.</p>";
-            }
-            $conn->close();
-        ?>
-    </div>
+        <p><strong>Email institucional: </strong><?php echo $email_institucional; ?></p>
+    </div>  
     <div class="grid-perfil_item">
-        <?php
-            $servername = "localhost";
-            $username = "root";
-            $password = "";
-            $dbname = "bdestudiante_registro";
-            
-            $conn = new mysqli($servername, $username, $password, $dbname);
-
-            if ($conn->connect_error) {
-                die("Error en la conexión: " . $conn->connect_error);
-            }
-
-            $codigo = "2021-119082";
-
-            $sql = "SELECT * FROM registro_estudiante WHERE codigo = '$codigo' ORDER BY codigo";
-            $result = $conn->query($sql);
-
-            if ($result->num_rows > 0) {while ($row = $result->fetch_assoc()) {
-                echo "<div>";
-                echo "<p><strong>Número: </strong>" . $row['celular1'] . "</p>";
-                echo "</div>";
-            }
-            } 
-            else {
-                echo "<p>No se encontraron registros para el código especificado.</p>";
-            }
-            $conn->close();
-        ?>
+        <p><strong>Celular: </strong><?php echo $celular1; ?></p>
     </div>
 </main>
 

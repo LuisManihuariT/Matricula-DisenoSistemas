@@ -1,3 +1,57 @@
+<?php
+session_start();
+
+// Verificar si se ha enviado una solicitud de cierre de sesión
+if (isset($_GET['logout'])) {
+    // Eliminar todas las variables de sesión
+    session_unset();
+
+    // Destruir la sesión
+    session_destroy();
+
+    // Redireccionar al formulario de inicio de sesión
+    header("Location: login.php");
+    exit();
+}
+
+// Verificar si no se ha iniciado sesión
+if (!isset($_SESSION['codigo_estudiante'])) {
+    // Si no se ha iniciado sesión, redireccionar al formulario de inicio de sesión
+    header("Location: login.php");
+    exit();
+}
+
+$codigo = $_SESSION['codigo_estudiante'];
+
+// Resto del código para mostrar los datos del perfil
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "bdestudiante_registro";
+
+$conn = new mysqli($servername, $username, $password, $dbname);
+
+if ($conn->connect_error) {
+    die("Error en la conexión: " . $conn->connect_error);
+}
+
+$sql = "SELECT * FROM registro_estudiante WHERE codigo = '$codigo' ORDER BY codigo";
+$result = $conn->query($sql);
+
+if ($result->num_rows > 0) {
+    while ($row = $result->fetch_assoc()) {
+        $apellido_paterno = $row['apellido_paterno'];
+        $apellido_materno = $row['apellido_materno'];
+        $nombres = $row['nombres'];
+        $num_doc_registro = $row['num_doc_registro'];
+        $tipo_documento = $row['tip_documento'];
+    }
+} else {
+    echo "<p>No se encontraron registros para el código especificado.</p>";
+}
+$conn->close();
+?>
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -80,20 +134,9 @@
                     <label for="num_doc_registro">Número de documento de registro:</label>
                 </div>
                 <div class="row">
-                    <input type="text" name="codigo" id="codigo" required>
-                    <select name="tip_documento" id="tip_documento" required>
-                        <option value="NO ESPECIFICADO">NO ESPECIFICADO</option>
-                        <option value="PARTIDA DE NACIMIENTO">PARTIDA DE NACIMIENTO</option>
-                        <option value="DOCUMENTO NACIONAL DE IDENTIDAD">DOCUMENTO NACIONAL DE IDENTIDAD</option>
-                        <option value="LIBRETA ELECTORAL">LIBRETA ELECTORAL</option>
-                        <option value="LIBRETA MILITAR">LIBRETA MILITAR</option>
-                        <option value="PASAPORTE">PASAPORTE</option>
-                        <option value="CARNET DE EXTRANJERIA">CARNET DE EXTRANJERIA</option>
-                        <option value="CEDULA DE IDENTIDAD">CEDULA DE IDENTIDAD</option>
-                        <option value="CARNET DE IDENTIDAD">CARNET DE IDENTIDAD</option>
-                        <option value="PERMISO TEMPORAL DE PERMANENCIA">PERMISO TEMPORAL DE PERMANENCIA</option>
-                    </select>
-                    <input type="number" name="num_doc_registro" id="num_doc_registro" required>
+                    <p><?php echo $codigo; ?></p>
+                    <p><?php echo $tipo_documento; ?></p>
+                    <p><?php echo $num_doc_registro; ?></p>
                 </div>
 
                 <div class="row">
@@ -102,9 +145,9 @@
                     <label for="nombres">Nombres:</label>
                 </div>
                 <div class="row">
-                    <input type="text" name="apellido_paterno" id="apellido_paterno" required>
-                    <input type="text" name="apellido_materno" id="apellido_materno" required>
-                    <input type="text" name="nombres" id="nombres" required>
+                    <p><?php echo $apellido_paterno; ?></p>
+                    <p><?php echo $apellido_materno; ?></p>
+                    <p><?php echo $nombres; ?></p>
                 </div>
 
                 <div class="row">

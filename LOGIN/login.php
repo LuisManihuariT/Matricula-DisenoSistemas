@@ -1,5 +1,14 @@
 <?php
-// Verificar si se ha enviado el formulario
+session_start();
+
+// Verificar si ya se ha iniciado sesión
+if (isset($_SESSION['codigo_estudiante'])) {
+    // Si ya se ha iniciado sesión, redireccionar a la página principal
+    header("Location: index.html");
+    exit();
+}
+
+// Verificar si se ha enviado el formulario de inicio de sesión
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
     // Obtener los valores ingresados en el formulario
     $codigo = $_POST['usuario'];
@@ -22,12 +31,13 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $result = $conn->query($sql);
 
     if ($result->num_rows > 0) {
-        // Los datos ingresados son válidos, redireccionar a la página deseada
+        // Los datos ingresados son válidos, iniciar sesión y redireccionar a la página principal
+        $_SESSION['codigo_estudiante'] = $codigo;
         header("Location: index.html");
         exit();
     } else {
         // Los datos ingresados son inválidos, mostrar mensaje de error
-        echo "Usuario o contraseña incorrectos.";
+        $error_message = "Usuario o contraseña incorrectos.";
     }
 
     $conn->close();
@@ -55,6 +65,9 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         <div class="form-body">
             <img src="img/login.png" alt="imagen login">
             <p class="text">Inicio de Sesión</p>
+            <?php if (isset($error_message)): ?>
+                <p><?php echo $error_message; ?></p>
+            <?php endif; ?>
             <form action="<?php echo $_SERVER['PHP_SELF']; ?>" class="login-form" method="POST">
                 <label  for="usuario">
                     <i class="fa-solid fa-user"></i>
